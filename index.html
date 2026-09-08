@@ -1,21 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
 <head>
   <meta charset="UTF-8" />
-  <title>ApplinkBot – Simple Link Tools</title>
+  <title>ApplinkBot – اتوماسیون هوشمند کسب‌وکارها</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    :root {
+      --bg: #050816;
+      --card: #0f172a;
+      --accent: #6366f1;
+      --text-main: #e5e7eb;
+      --text-sub: #9ca3af;
+    }
+    * { box-sizing: border-box; }
     body {
-      background: #0f0f15;
-      color: #e5e5e5;
-      font-family: system-ui, sans-serif;
       margin: 0;
       padding: 0;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      direction: rtl;
     }
     .page {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 32px 16px;
+      padding: 32px 16px 48px;
     }
     header {
       display: flex;
@@ -24,98 +33,864 @@
       margin-bottom: 40px;
     }
     .logo {
-      font-size: 20px;
-      font-weight: 600;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
     }
-    nav a {
-      color: #aaa;
-      margin-left: 16px;
-      text-decoration: none;
+    .logo span {
+      color: var(--accent);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
       font-size: 14px;
     }
+    nav a {
+      color: var(--text-sub);
+      text-decoration: none;
+    }
     nav a:hover {
-      color: #fff;
+      color: var(--text-main);
+    }
+    .lang-switch {
+      cursor: pointer;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.8fr);
+      gap: 24px;
+      align-items: center;
     }
     .hero-title {
-      font-size: 28px;
+      font-size: 30px;
       margin-bottom: 12px;
     }
     .hero-sub {
-      font-size: 14px;
-      color: #bbb;
-      margin-bottom: 24px;
+      font-size: 15px;
+      color: var(--text-sub);
+      margin-bottom: 20px;
+      line-height: 1.7;
     }
-    .btn {
-      background: #6366f1;
-      color: #fff;
-      padding: 10px 18px;
-      border-radius: 8px;
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .tag {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #1f2937;
+      background: rgba(15,23,42,0.8);
+      color: var(--text-sub);
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .btn-primary, .btn-secondary {
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 14px;
       border: none;
       cursor: pointer;
-      font-size: 14px;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid #374151;
+    }
+    .hero-card {
+      background: rgba(15,23,42,0.9);
+      border-radius: 16px;
+      padding: 18px 16px;
+      border: 1px solid #1f2937;
+      font-size: 13px;
+    }
+    .hero-card h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+    }
+    .hero-card ul {
+      margin: 0;
+      padding-left: 18px;
+      line-height: 1.7;
+      color: var(--text-sub);
     }
     .section {
       margin-top: 40px;
     }
     .section-title {
-      font-size: 18px;
-      margin-bottom: 8px;
+      font-size: 20px;
+      margin-bottom: 6px;
     }
     .section-sub {
       font-size: 14px;
-      color: #bbb;
-      margin-bottom: 16px;
+      color: var(--text-sub);
+      margin-bottom: 18px;
+      line-height: 1.7;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: rgba(15,23,42,0.9);
+      border-radius: 14px;
+      padding: 14px 14px 16px;
+      border: 1px solid #1f2937;
+      font-size: 13px;
+    }
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+    .card p {
+      margin: 0 0 8px;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+    .pill {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: #111827;
+      color: var(--accent);
+    }
+    .contact-box {
+      background: rgba(15,23,42,0.9);
+      border-radius: 14px;
+      padding: 14px 14px 16px;
+      border: 1px solid #1f2937;
+      font-size: 13px;
+    }
+    .contact-box p {
+      margin: 0 0 8px;
+      color: var(--text-sub);
+      line-height: 1.7;
     }
     footer {
       margin-top: 40px;
       font-size: 12px;
-      color: #777;
+      color: #6b7280;
       text-align: center;
+    }
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
   <div class="page">
+    <!-- Header -->
     <header>
-      <div class="logo">ApplinkBot</div>
+      <div class="logo"><span>Applink</span>Bot</div>
       <nav>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="#services">سرویس‌ها</a>
+        <a href="#verticals">کسب‌وکارها</a>
+        <a href="#contact">تماس</a>
+        <span class="lang-switch" onclick="switchLang()">EN</span>
       </nav>
     </header>
 
-    <section>
-      <h1 class="hero-title">Simple tools for managing your links</h1>
-      <p class="hero-sub">
-        ApplinkBot helps you organize and review your links in one place.  
-        More features will be introduced soon.
-      </p>
-      <button class="btn">Coming Soon</button>
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <h1 class="hero-title">اتوماسیون هوشمند برای کسب‌وکارهای خدماتی</h1>
+        <p class="hero-sub">
+          ApplinkBot به کسب‌وکارهایی مثل دندانپزشکی، کلینیک‌ها، پزشکان و آرایشگران کمک می‌کند
+          نوبت‌دهی، ارتباط با مشتری و مدیریت رزروها را به‌صورت خودکار و قابل‌اعتماد انجام دهند؛
+          بدون نیاز به تیم فنی و بدون هزینه‌های سنگین زیرساخت.
+        </p>
+        <div class="hero-tags">
+          <span class="tag">نوبت‌دهی دندانپزشکی</span>
+          <span class="tag">نوبت‌دهی پزشکان</span>
+          <span class="tag">نوبت‌دهی آرایشگران</span>
+          <span class="tag">اتوماسیون پیام‌رسان‌ها</span>
+          <span class="tag">ساخت سایت کسب‌وکار</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn-primary">درخواست مشاوره و همکاری</button>
+          <button class="btn-secondary">مشاهده سرویس‌ها</button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>چه کاری انجام می‌دهیم؟</h3>
+        <ul>
+          <li>راه‌اندازی سیستم نوبت‌دهی برای دندانپزشکی، پزشکان، کلینیک‌ها و آرایشگران</li>
+          <li>ساخت سایت رسمی کسب‌وکار روی زیرساخت امن و رایگان (GitHub Pages)</li>
+          <li>اتصال نوبت‌دهی و فرم‌ها به ربات‌های تلگرام و بله</li>
+          <li>اتوماسیون پیام‌ها، یادآوری‌ها و پیگیری‌ها برای مشتریان</li>
+        </ul>
+      </div>
     </section>
 
-    <section id="about" class="section">
-      <h2 class="section-title">About ApplinkBot</h2>
+    <!-- Services -->
+    <section id="services" class="section">
+      <h2 class="section-title">سرویس‌های ApplinkBot</h2>
       <p class="section-sub">
-        ApplinkBot is a lightweight platform designed to help users keep track of their online links.  
-        The full version is currently under development.
+        ما مجموعه‌ای از سرویس‌های اتوماسیون را ارائه می‌دهیم که می‌توانند به‌صورت جداگانه یا ترکیبی
+        برای هر کسب‌وکار پیاده‌سازی شوند.
       </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>سیستم نوبت‌دهی دندانپزشکی</h3>
+          <p>
+            طراحی و راه‌اندازی سیستم رزرو وقت برای مطب‌های دندانپزشکی، با امکان ثبت اطلاعات بیمار،
+            انتخاب پزشک، نوع خدمت و زمان مراجعه.
+          </p>
+          <ul>
+            <li>فرم رزرو آنلاین</li>
+            <li>یادآوری نوبت از طریق پیام‌رسان</li>
+            <li>گزارش‌گیری ساده برای پزشک و منشی</li>
+          </ul>
+          <span class="pill">Dental Appointment Automation</span>
+        </div>
+        <div class="card">
+          <h3>نوبت‌دهی پزشکان و کلینیک‌ها</h3>
+          <p>
+            سیستم نوبت‌دهی برای پزشکان عمومی، متخصص و کلینیک‌ها، با امکان مدیریت چند پزشک،
+            چند اتاق و چند نوع خدمت.
+          </p>
+          <ul>
+            <li>تقویم نوبت‌ها برای هر پزشک</li>
+            <li>ثبت و ویرایش نوبت توسط منشی</li>
+            <li>ارسال پیام تأیید و یادآوری</li>
+          </ul>
+          <span class="pill">Doctors & Clinics Scheduling</span>
+        </div>
+        <div class="card">
+          <h3>نوبت‌دهی آرایشگران و سالن‌های زیبایی</h3>
+          <p>
+            سیستم رزرو وقت برای آرایشگران و سالن‌های زیبایی، با امکان انتخاب خدمات،
+            آرایشگر، ساعت و روز، و مدیریت ظرفیت.
+          </p>
+          <ul>
+            <li>رزرو آنلاین از طریق لینک یا ربات</li>
+            <li>مدیریت ظرفیت روزانه و هفتگی</li>
+            <li>پیام‌های خودکار برای تأیید و یادآوری</li>
+          </ul>
+          <span class="pill">Beauty & Barbers Scheduling</span>
+        </div>
+      </div>
     </section>
 
+    <!-- Business Automation -->
+    <section id="verticals" class="section">
+      <h2 class="section-title">اتوماسیون کسب‌وکار و ساخت سایت</h2>
+      <p class="section-sub">
+        علاوه بر نوبت‌دهی، ApplinkBot می‌تواند برای کسب‌وکار شما یک سایت رسمی، فرم‌های هوشمند
+        و ربات‌های پیام‌رسان طراحی کند تا فرآیندهای روزمره شما خودکار و قابل‌پیگیری شوند.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>ساخت سایت کسب‌وکار</h3>
+          <p>
+            طراحی و راه‌اندازی سایت رسمی برای کسب‌وکار شما (کلینیک، مطب، سالن زیبایی و...) روی
+            زیرساخت امن و رایگان، بدون نیاز به سرور اختصاصی.
+          </p>
+          <ul>
+            <li>صفحه معرفی خدمات و تیم</li>
+            <li>صفحه نوبت‌دهی یا فرم تماس</li>
+            <li>اتصال دامنه اختصاصی شما</li>
+          </ul>
+          <span class="pill">Business Website on GitHub Pages</span>
+        </div>
+        <div class="card">
+          <h3>ربات‌های پیام‌رسان (تلگرام + بله)</h3>
+          <p>
+            طراحی ربات‌های اختصاصی برای تلگرام و بله که می‌توانند نوبت‌ها را ثبت کنند،
+            وضعیت رزرو را نمایش دهند و با مشتریان تعامل داشته باشند.
+          </p>
+          <ul>
+            <li>ثبت نوبت از طریق ربات</li>
+            <li>نمایش نوبت‌های آینده به مشتری</li>
+            <li>پیام‌های خودکار برای یادآوری و پیگیری</li>
+          </ul>
+          <span class="pill">Messaging Bots Integration</span>
+        </div>
+        <div class="card">
+          <h3>فرم‌ساز و اتوماسیون فرآیندها</h3>
+          <p>
+            ساخت فرم‌های هوشمند برای ثبت اطلاعات مشتری، درخواست خدمات، پیگیری‌ها و نظرسنجی،
+            همراه با اتصال به سیستم‌های داخلی شما.
+          </p>
+          <ul>
+            <li>فرم‌های آنلاین قابل شخصی‌سازی</li>
+            <li>ارسال داده‌ها به ربات یا پنل مدیریتی</li>
+            <li>گزارش‌گیری از وضعیت درخواست‌ها</li>
+          </ul>
+          <span class="pill">Forms & Workflow Automation</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
     <section id="contact" class="section">
-      <h2 class="section-title">Contact</h2>
+      <h2 class="section-title">تماس و همکاری</h2>
+      <div class="contact-box">
+        <p>
+          اگر صاحب یک مطب دندانپزشکی، کلینیک، مطب پزشکی یا سالن زیبایی هستید و می‌خواهید
+          نوبت‌دهی و ارتباط با مشتریان خود را هوشمند و خودکار کنید، می‌توانید برای شروع همکاری
+          با ApplinkBot در تماس باشید.
+        </p>
+        <p>
+          ایمیل: <strong>info@applinkbot.com</strong><br />
+         سعید، حالا که تصمیم گرفتی استراتژی‌ات را **شفاف و حرفه‌ای** روی سایت بیاوری، یک **صفحه اصلی کامل و استراتژیک، دو زبانه (فارسی + انگلیسی)** برات طراحی می‌کنم که:
+
+- واضح نشان می‌دهد کار تو چیست:  
+  اتوماسیون کسب‌وکارها، نوبت‌دهی، ساخت سایت، ربات‌های پیام‌رسان، فرم‌ساز و…
+- برای دندانپزشکی، پزشکان، آرایشگران و سایر کسب‌وکارها مثال می‌زند
+- هم برای مشتری ایرانی قابل فهم است، هم برای مشتری بین‌المللی
+
+فقط کافی است این کد را جایگزین `index.html` فعلی کنی.
+
+---
+
+```html
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>ApplinkBot – اتوماسیون هوشمند کسب‌وکارها</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050816;
+      --card: #0f172a;
+      --accent: #6366f1;
+      --text-main: #e5e7eb;
+      --text-sub: #9ca3af;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      direction: rtl;
+    }
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 16px 48px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .logo span {
+      color: var(--accent);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 14px;
+    }
+    nav a {
+      color: var(--text-sub);
+      text-decoration: none;
+    }
+    nav a:hover {
+      color: var(--text-main);
+    }
+    .lang-switch {
+      cursor: pointer;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.8fr);
+      gap: 24px;
+      align-items: center;
+    }
+    .hero-title {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+    .hero-sub {
+      font-size: 15px;
+      color: var(--text-sub);
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .tag {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #1f2937;
+      background: rgba(15,23,42,0.8);
+      color: var(--text-sub);
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .btn-primary, .btn-secondary {
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid #374151;
+    }
+    .hero-card {
+      background: rgba(15,23,42,0.9);
+      border-radius: 16px;
+      padding: 18px 16px;
+      border: 1px solid #1f2937;
+      font-size: 13px;
+    }
+    .hero-card h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+    }
+    .hero-card ul {
+      margin: 0;
+      padding-left: 18px;
+      line-height: 1.7;
+      color: var(--text-sub);
+    }
+    .section {
+      margin-top: 40px;
+    }
+    .section-title {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+    .section-sub {
+      font-size: 14px;
+      color: var(--text-sub);
+      margin-bottom: 18px;
+      line-height: 1.7;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: rgba(15,23,42,0.9);
+      border-radius: 14px;
+      padding: 14px 14px 16px;
+      border: 1px solid #1f2937;
+      font-size: 13px;
+    }
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+    .card p {
+      margin: 0 0 8px;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+    .pill {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: #111827;
+      color: var(--accent);
+    }
+    .contact-box {
+      background: rgba(15,23,42,0.9);
+      border-radius: 14px;
+      padding: 14px 14px 16px;
+      border: 1px solid #1f2937;
+      font-size: 13px;
+    }
+    .contact-box p {
+      margin: 0 0 8px;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #6b7280;
+      text-align: center;
+    }
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Header -->
+    <header>
+      <div class="logo"><span>Applink</span>Bot</div>
+      <nav>
+        <a href="#services">سرویس‌ها</a>
+        <a href="#verticals">کسب‌وکارها</a>
+        <a href="#contact">تماس</a>
+        <span class="lang-switch" onclick="switchLang()">EN</span>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <h1 class="hero-title">اتوماسیون هوشمند برای کسب‌وکارهای خدماتی</h1>
+        <p class="hero-sub">
+          ApplinkBot به کسب‌وکارهایی مثل دندانپزشکی، کلینیک‌ها، پزشکان و آرایشگران کمک می‌کند
+          نوبت‌دهی، ارتباط با مشتری و مدیریت رزروها را به‌صورت خودکار و قابل‌اعتماد انجام دهند؛
+          بدون نیاز به تیم فنی و بدون هزینه‌های سنگین زیرساخت.
+        </p>
+        <div class="hero-tags">
+          <span class="tag">نوبت‌دهی دندانپزشکی</span>
+          <span class="tag">نوبت‌دهی پزشکان</span>
+          <span class="tag">نوبت‌دهی آرایشگران</span>
+          <span class="tag">اتوماسیون پیام‌رسان‌ها</span>
+          <span class="tag">ساخت سایت کسب‌وکار</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn-primary">درخواست مشاوره و همکاری</button>
+          <button class="btn-secondary">مشاهده سرویس‌ها</button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>چه کاری انجام می‌دهیم؟</h3>
+        <ul>
+          <li>راه‌اندازی سیستم نوبت‌دهی برای دندانپزشکی، پزشکان، کلینیک‌ها و آرایشگران</li>
+          <li>ساخت سایت رسمی کسب‌وکار روی زیرساخت امن و رایگان (GitHub Pages)</li>
+          <li>اتصال نوبت‌دهی و فرم‌ها به ربات‌های تلگرام و بله</li>
+          <li>اتوماسیون پیام‌ها، یادآوری‌ها و پیگیری‌ها برای مشتریان</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section">
+      <h2 class="section-title">سرویس‌های ApplinkBot</h2>
       <p class="section-sub">
-        Email: info@applinkbot.com  
-        More communication channels will be added later.
+        ما مجموعه‌ای از سرویس‌های اتوماسیون را ارائه می‌دهیم که می‌توانند به‌صورت جداگانه یا ترکیبی
+        برای هر کسب‌وکار پیاده‌سازی شوند.
       </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>سیستم نوبت‌دهی دندانپزشکی</h3>
+          <p>
+            طراحی و راه‌اندازی سیستم رزرو وقت برای مطب‌های دندانپزشکی، با امکان ثبت اطلاعات بیمار،
+            انتخاب پزشک، نوع خدمت و زمان مراجعه.
+          </p>
+          <ul>
+            <li>فرم رزرو آنلاین</li>
+            <li>یادآوری نوبت از طریق پیام‌رسان</li>
+            <li>گزارش‌گیری ساده برای پزشک و منشی</li>
+          </ul>
+          <span class="pill">Dental Appointment Automation</span>
+        </div>
+        <div class="card">
+          <h3>نوبت‌دهی پزشکان و کلینیک‌ها</h3>
+          <p>
+            سیستم نوبت‌دهی برای پزشکان عمومی، متخصص و کلینیک‌ها، با امکان مدیریت چند پزشک،
+            چند اتاق و چند نوع خدمت.
+          </p>
+          <ul>
+            <li>تقویم نوبت‌ها برای هر پزشک</li>
+            <li>ثبت و ویرایش نوبت توسط منشی</li>
+            <li>ارسال پیام تأیید و یادآوری</li>
+          </ul>
+          <span class="pill">Doctors & Clinics Scheduling</span>
+        </div>
+        <div class="card">
+          <h3>نوبت‌دهی آرایشگران و سالن‌های زیبایی</h3>
+          <p>
+            سیستم رزرو وقت برای آرایشگران و سالن‌های زیبایی، با امکان انتخاب خدمات،
+            آرایشگر، ساعت و روز، و مدیریت ظرفیت.
+          </p>
+          <ul>
+            <li>رزرو آنلاین از طریق لینک یا ربات</li>
+            <li>مدیریت ظرفیت روزانه و هفتگی</li>
+            <li>پیام‌های خودکار برای تأیید و یادآوری</li>
+          </ul>
+          <span class="pill">Beauty & Barbers Scheduling</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Business Automation -->
+    <section id="verticals" class="section">
+      <h2 class="section-title">اتوماسیون کسب‌وکار و ساخت سایت</h2>
+      <p class="section-sub">
+        علاوه بر نوبت‌دهی، ApplinkBot می‌تواند برای کسب‌وکار شما یک سایت رسمی، فرم‌های هوشمند
+        و ربات‌های پیام‌رسان طراحی کند تا فرآیندهای روزمره شما خودکار و قابل‌پیگیری شوند.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>ساخت سایت کسب‌وکار</h3>
+          <p>
+            طراحی و راه‌اندازی سایت رسمی برای کسب‌وکار شما (کلینیک، مطب، سالن زیبایی و...) روی
+            زیرساخت امن و رایگان، بدون نیاز به سرور اختصاصی.
+          </p>
+          <ul>
+            <li>صفحه معرفی خدمات و تیم</li>
+            <li>صفحه نوبت‌دهی یا فرم تماس</li>
+            <li>اتصال دامنه اختصاصی شما</li>
+          </ul>
+          <span class="pill">Business Website on GitHub Pages</span>
+        </div>
+        <div class="card">
+          <h3>ربات‌های پیام‌رسان (تلگرام + بله)</h3>
+          <p>
+            طراحی ربات‌های اختصاصی برای تلگرام و بله که می‌توانند نوبت‌ها را ثبت کنند،
+            وضعیت رزرو را نمایش دهند و با مشتریان تعامل داشته باشند.
+          </p>
+          <ul>
+            <li>ثبت نوبت از طریق ربات</li>
+            <li>نمایش نوبت‌های آینده به مشتری</li>
+            <li>پیام‌های خودکار برای یادآوری و پیگیری</li>
+          </ul>
+          <span class="pill">Messaging Bots Integration</span>
+        </div>
+        <div class="card">
+          <h3>فرم‌ساز و اتوماسیون فرآیندها</h3>
+          <p>
+            ساخت فرم‌های هوشمند برای ثبت اطلاعات مشتری، درخواست خدمات، پیگیری‌ها و نظرسنجی،
+            همراه با اتصال به سیستم‌های داخلی شما.
+          </p>
+          <ul>
+            <li>فرم‌های آنلاین قابل شخصی‌سازی</li>
+            <li>ارسال داده‌ها به ربات یا پنل مدیریتی</li>
+            <li>گزارش‌گیری از وضعیت درخواست‌ها</li>
+          </ul>
+          <span class="pill">Forms & Workflow Automation</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <h2 class="section-title">تماس و همکاری</h2>
+      <div class="contact-box">
+        <p>
+          اگر صاحب یک مطب دندانپزشکی، کلینیک، مطب پزشکی یا سالن زیبایی هستید و می‌خواهید
+          نوبت‌دهی و ارتباط با مشتریان خود را هوشمند و خودکار کنید، می‌توانید برای شروع همکاری
+          با ApplinkBot در تماس باشید.
+        </p>
+        <p>
+          ایمیل: <strong>info@applinkbot.com</strong><br />
+          توضیح کوتاه درباره کسب‌وکار خود و نوع سرویس مورد نیاز را برای ما ارسال کنید.
+        </p>
+        <p>
+          در مراحل بعدی، کانال‌های ارتباطی بیشتری (فرم تماس، پیام‌رسان‌ها و...) به این صفحه اضافه خواهند شد.
+        </p>
+      </div>
     </section>
 
     <footer>
-      © <span id="year"></span> ApplinkBot
+      © <span id="year"></span> ApplinkBot – Business Automation & Scheduling
     </footer>
   </div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    function switchLang() {
+      const lang = document.documentElement.lang;
+      if (lang === "fa") {
+        document.documentElement.lang = "en";
+        document.body.style.direction = "ltr";
+        document.title = "ApplinkBot – Business Automation & Scheduling";
+
+        document.querySelector(".logo").innerHTML = "<span>Applink</span>Bot";
+        document.querySelector("nav").innerHTML = `
+          <a href="#services">Services</a>
+          <a href="#verticals">Use Cases</a>
+          <a href="#contact">Contact</a>
+          <span class="lang-switch" onclick="switchLang()">FA</span>
+        `;
+
+        document.querySelector(".hero-title").innerHTML =
+          "Smart automation for service businesses";
+        document.querySelector(".hero-sub").innerHTML =
+          "ApplinkBot helps dental clinics, doctors, beauty salons and other service businesses automate appointments, customer communication and daily workflows—without a dedicated technical team or complex infrastructure.";
+        document.querySelector(".hero-tags").innerHTML = `
+          <span class="tag">Dental appointments</span>
+          <span class="tag">Doctors & clinics</span>
+          <span class="tag">Beauty & barbers</span>
+          <span class="tag">Messaging automation</span>
+          <span class="tag">Business websites</span>
+        `;
+        document.querySelector(".btn-row").innerHTML = `
+          <button class="btn-primary">Request consultation</button>
+          <button class="btn-secondary">View services</button>
+        `;
+        document.querySelector(".hero-card h3").innerHTML = "What we do";
+        document.querySelector(".hero-card ul").innerHTML = `
+          <li>Appointment systems for dental clinics, doctors, clinics and beauty salons</li>
+          <li>Official business websites on secure, low-cost infrastructure</li>
+          <li>Connecting appointments and forms to Telegram and Bale bots</li>
+          <li>Automated messages, reminders and follow-ups for your customers</li>
+        `;
+
+        document.querySelector("#services .section-title").innerHTML = "ApplinkBot Services";
+        document.querySelector("#services .section-sub").innerHTML =
+          "We provide a set of automation services that can be combined or used separately for each business.";
+        const cards = document.querySelectorAll("#services .card");
+        cards[0].innerHTML = `
+          <h3>Dental appointment system</h3>
+          <p>
+            Design and deployment of an appointment system for dental clinics, with patient data,
+            doctor selection, service type and visit time.
+          </p>
+          <ul>
+            <li>Online booking form</li>
+            <li>Appointment reminders via messaging apps</li>
+            <li>Simple reporting for doctor and assistant</li>
+          </ul>
+          <span class="pill">Dental Appointment Automation</span>
+        `;
+        cards[1].innerHTML = `
+          <h3>Doctors & clinics scheduling</h3>
+          <p>
+            Appointment systems for general practitioners, specialists and clinics, with multi-doctor,
+            multi-room and multi-service support.
+          </p>
+          <ul>
+            <li>Per-doctor appointment calendar</li>
+            <li>Booking and editing by staff</li>
+            <li>Confirmation and reminder messages</li>
+          </ul>
+          <span class="pill">Doctors & Clinics Scheduling</span>
+        `;
+        cards[2].innerHTML = `
+          <h3>Beauty & barbers appointments</h3>
+          <p>
+            Booking systems for beauty salons and barbers, with service selection, staff selection,
+            time slots and capacity management.
+          </p>
+          <ul>
+            <li>Online booking via link or bot</li>
+            <li>Daily and weekly capacity management</li>
+            <li>Automated confirmation and reminder messages</li>
+          </ul>
+          <span class="pill">Beauty & Barbers Scheduling</span>
+        `;
+
+        document.querySelector("#verticals .section-title").innerHTML =
+          "Business automation & websites";
+        document.querySelector("#verticals .section-sub").innerHTML =
+          "Beyond appointments, ApplinkBot can build your official website, smart forms and messaging bots so your daily processes become automated and trackable.";
+        const vCards = document.querySelectorAll("#verticals .card");
+        vCards[0].innerHTML = `
+          <h3>Business website</h3>
+          <p>
+            Design and deployment of an official website for your clinic, practice or beauty salon
+            on secure, low-cost infrastructure—without a dedicated server.
+          </p>
+          <ul>
+            <li>Service and team introduction pages</li>
+            <li>Appointment or contact forms</li>
+            <li>Connection of your own domain</li>
+          </ul>
+          <span class="pill">Business Website on GitHub Pages</span>
+        `;
+        vCards[1].innerHTML = `
+          <h3>Messaging bots (Telegram + Bale)</h3>
+          <p>
+            Custom bots for Telegram and Bale that can register appointments, show upcoming bookings
+            and interact with your customers.
+          </p>
+          <ul>
+            <li>Booking via bot</li>
+            <li>Showing upcoming appointments to customers</li>
+            <li>Automated reminders and follow-ups</li>
+          </ul>
+          <span class="pill">Messaging Bots Integration</span>
+        `;
+        vCards[2].innerHTML = `
+          <h3>Forms & workflow automation</h3>
+          <p>
+            Smart forms for customer data, service requests, follow-ups and feedback, connected to
+            your internal systems.
+          </p>
+          <ul>
+            <li>Customizable online forms</li>
+            <li>Sending data to bots or admin panels</li>
+            <li>Reporting on request status</li>
+          </ul>
+          <span class="pill">Forms & Workflow Automation</span>
+        `;
+
+        document.querySelector("#contact .section-title").innerHTML = "Contact & collaboration";
+        document.querySelector("#contact .contact-box").innerHTML = `
+          <p>
+            If you run a dental clinic, medical practice, clinic or beauty salon and want to make
+            your appointments and customer communication smart and automated, you can start a
+            collaboration with ApplinkBot.
+          </p>
+          <p>
+            Email: <strong>info@applinkbot.com</strong><br />
+            Please send a short description of your business and the type of service you need.
+          </p>
+          <p>
+            Additional contact channels (forms, messaging apps, etc.) will be added to this page later.
+          </p>
+        `;
+
+        document.querySelector("footer").innerHTML =
+          "© " + new Date().getFullYear() + " ApplinkBot – Business Automation & Scheduling";
+      } else {
+        location.reload();
+      }
+    }
   </script>
 </body>
-</html>
+            </html>
