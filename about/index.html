@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>درباره ما – ApplinkBot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      background: #050816;
+      color: #e5e7eb;
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+    }
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 16px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .logo span {
+      color: #6366f1;
+    }
+    nav a {
+      color: #9ca3af;
+      margin-left: 16px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+    .lang-switch {
+      cursor: pointer;
+      color: #6366f1;
+      font-weight: 500;
+    }
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      font-size: 15px;
+      color: #9ca3af;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+    .card {
+      background: rgba(15,23,42,0.9);
+      border-radius: 14px;
+      padding: 16px;
+      border: 1px solid #1f2937;
+      margin-bottom: 24px;
+    }
+    .card img {
+      max-width: 300px;
+      border-radius: 12px;
+      border: 1px solid #1f2937;
+      margin-top: 12px;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #6b7280;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <!-- Header -->
+    <header>
+      <div class="logo"><span>Applink</span>Bot</div>
+      <nav>
+        <a href="../index.html">صفحه اصلی</a>
+        <a href="../services/index.html">سرویس‌ها</a>
+        <a href="../contact/index.html">تماس</a>
+        <span class="lang-switch" onclick="switchLang()">EN</span>
+      </nav>
+    </header>
+
+    <h1 class="section-title">درباره ApplinkBot</h1>
+
+    <div class="card">
+      <h3>معرفی</h3>
+      <p class="section-sub">
+        ApplinkBot یک سیستم اتوماسیون هوشمند برای کسب‌وکارهای خدماتی است. هدف ما ساده‌سازی
+        نوبت‌دهی، مدیریت مشتریان، ساخت سایت و ایجاد ربات‌های پیام‌رسان برای کلینیک‌ها،
+        مطب‌ها و سالن‌های زیبایی است.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>بنیان‌گذار</h3>
+      <p class="section-sub">
+        سعید قوامی، بنیان‌گذار ApplinkBot، دارای گواهینامه رسمی «AI for Work and Life» از
+        دانشگاه North Florida آمریکا است. این دوره با اعتبار ۱ CEU در حوزه کاربرد هوش مصنوعی
+        در کسب‌وکارهای خدماتی برگزار شده و مبنای طراحی سیستم‌های اتوماسیون ApplinkBot قرار گرفته است.
+      </p>
+
+      <!-- Certificate Image -->
+      <img src="../images/certificate.jpg" alt="AI Certificate - University of North Florida">
+    </div>
+
+    <div class="card">
+      <h3>ماموریت ما</h3>
+      <p class="section-sub">
+        هدف ApplinkBot ارائه ابزارهای هوشمند، سریع و قابل‌اعتماد برای مدیریت نوبت‌ها،
+        ارتباط با مشتریان و اتوماسیون فرآیندهای روزمره کسب‌وکارهاست.
+      </p>
+    </div>
+
+    <footer>
+      © <span id="year"></span> ApplinkBot – Business Automation & Scheduling
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function switchLang() {
+      const lang = document.documentElement.lang;
+      if (lang === "fa") {
+        document.documentElement.lang = "en";
+        document.body.style.direction = "ltr";
+        document.title = "About – ApplinkBot";
+
+        document.querySelector(".section-title").innerHTML = "About ApplinkBot";
+
+        const cards = document.querySelectorAll(".card");
+
+        cards[0].innerHTML = `
+          <h3>Introduction</h3>
+          <p class="section-sub">
+            ApplinkBot is an intelligent automation system for service-based businesses.
+            Our mission is to simplify scheduling, customer management, website creation,
+            and messaging bots for clinics, medical offices and beauty salons.
+          </p>
+        `;
+
+        cards[1].innerHTML = `
+          <h
+
+3>Founder</h3>
+          <p class="section-sub">
+            Saeed Ghavami, founder of ApplinkBot, holds an official certificate in
+            “AI for Work and Life” from the University of North Florida (USA).
+            This 1 CEU program focuses on practical applications of AI in service businesses
+            and forms the foundation of ApplinkBot’s automation systems.
+          </p>
+          <img src="../images/certificate.jpg" alt="AI Certificate - University of North Florida">
+        `;
+
+        cards[2].innerHTML = `
+          <h3>Our Mission</h3>
+          <p class="section-sub">
+            ApplinkBot aims to provide smart, fast and reliable tools for scheduling,
+            customer communication and business workflow automation.
+          </p>
+        `;
+
+        document.querySelector("nav").innerHTML = `
+          <a href="../index.html">Home</a>
+          <a href="../services/index.html">Services</a>
+          <a href="../contact/index.html">Contact</a>
+          <span class="lang-switch" onclick="switchLang()">FA</span>
+        `;
+      } else {
+        location.reload();
+      }
+    }
+  </script>
+
+</body>
+</html>
