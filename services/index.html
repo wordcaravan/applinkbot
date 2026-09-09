@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>سرویس‌های ApplinkBot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      background: #050816;
+      color: #e5e7eb;
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+    }
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 16px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .logo span {
+      color: #6366f1;
+    }
+    nav a {
+      color: #9ca3af;
+      margin-left: 16px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+    .lang-switch {
+      cursor: pointer;
+      color: #6366f1;
+      font-weight: 500;
+    }
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      font-size: 15px;
+      color: #9ca3af;
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: rgba(15,23,42,0.9);
+      border-radius: 14px;
+      padding: 16px;
+      border: 1px solid #1f2937;
+    }
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+    .card p {
+      margin: 0 0 12px;
+      color: #9ca3af;
+      line-height: 1.6;
+    }
+    .card a {
+      color: #6366f1;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #6b7280;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <!-- Header -->
+    <header>
+      <div class="logo"><span>Applink</span>Bot</div>
+      <nav>
+        <a href="../index.html">صفحه اصلی</a>
+        <a href="../contact/index.html">تماس</a>
+        <span class="lang-switch" onclick="switchLang()">EN</span>
+      </nav>
+    </header>
+
+    <h1 class="section-title">سرویس‌های ApplinkBot</h1>
+    <p class="section-sub">
+      مجموعه‌ای از سرویس‌های اتوماسیون برای کسب‌وکارهای خدماتی، شامل نوبت‌دهی، ساخت سایت،
+      ربات‌های پیام‌رسان و فرم‌ساز هوشمند.
+    </p>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>نوبت‌دهی دندانپزشکی</h3>
+        <p>سیستم رزرو وقت برای مطب‌های دندانپزشکی با فرم آنلاین، یادآوری پیام‌رسان و گزارش‌گیری.</p>
+        <a href="dental.html">مشاهده جزئیات</a>
+      </div>
+
+      <div class="card">
+        <h3>نوبت‌دهی پزشکان و کلینیک‌ها</h3>
+        <p>سیستم نوبت‌دهی برای پزشکان عمومی، متخصص و کلینیک‌ها با تقویم اختصاصی.</p>
+        <a href="doctors.html">مشاهده جزئیات</a>
+      </div>
+
+      <div class="card">
+        <h3>نوبت‌دهی آرایشگران</h3>
+        <p>سیستم رزرو وقت برای سالن‌های زیبایی و آرایشگران با مدیریت ظرفیت.</p>
+        <a href="barbers.html">مشاهده جزئیات</a>
+      </div>
+
+      <div class="card">
+        <h3>اتوماسیون کسب‌وکار</h3>
+        <p>فرآیندهای روزمره کسب‌وکار خود را با فرم‌ها، پیام‌رسان‌ها و ربات‌ها خودکار کنید.</p>
+        <a href="automation.html">مشاهده جزئیات</a>
+      </div>
+
+      <div class="card">
+        <h3>ساخت سایت کسب‌وکار</h3>
+        <p>طراحی سایت رسمی برای کلینیک‌ها، مطب‌ها و سالن‌های زیبایی روی GitHub Pages.</p>
+        <a href="website.html">مشاهده جزئیات</a>
+      </div>
+
+      <div class="card">
+        <h3>ربات‌های پیام‌رسان</h3>
+        <p>طراحی ربات‌های تلگرام و بله برای ثبت نوبت، نمایش رزروها و ارسال یادآوری.</p>
+        <a href="bots.html">مشاهده جزئیات</a>
+      </div>
+
+    </div>
+
+    <footer>
+      © <span id="year"></span> ApplinkBot – Business Automation & Scheduling
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function switchLang() {
+      const lang = document.documentElement.lang;
+      if (lang === "fa") {
+        document.documentElement.lang = "en";
+        document.body.style.direction = "ltr";
+        document.title = "ApplinkBot 
+
+services";
+
+        document.querySelector(".section-title").innerHTML = "ApplinkBot Services";
+        document.querySelector(".section-sub").innerHTML =
+          "A collection of automation services for service businesses, including scheduling
